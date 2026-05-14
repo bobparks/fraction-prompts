@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Build Your Prompt ✨</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@600;800&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Nunito', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f0f4ff;
+    padding: 24px;
+  }
+
+  .card-container {
+    width: 100%;
+    max-width: 600px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  h1 {
+    text-align: center;
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: #2d3a5c;
+  }
+
+  .copy-card {
+    background: #fff;
+    border-radius: 20px;
+    padding: 28px 24px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .label {
+    font-size: 0.85rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #8892ad;
+  }
+
+  .prompt-builder {
+    font-size: 1.15rem;
+    font-weight: 600;
+    line-height: 2.4;
+    color: #2d3a5c;
+    background: #f5f7ff;
+    border-radius: 12px;
+    padding: 16px 18px;
+    border: 2px solid #e2e7f5;
+  }
+
+  /* Inline dropdown styling */
+  .inline-select {
+    font-family: 'Nunito', sans-serif;
+    font-size: 1rem;
+    font-weight: 800;
+    color: #fff;
+    background: #3b6cf5;
+    border: none;
+    border-radius: 8px;
+    padding: 5px 10px;
+    cursor: pointer;
+    -webkit-appearance: none;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='white' stroke-width='2' fill='none'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 8px center;
+    padding-right: 26px;
+    vertical-align: middle;
+  }
+
+  .inline-select:focus {
+    outline: 3px solid rgba(59,108,245,0.35);
+    outline-offset: 1px;
+  }
+
+  .inline-select option {
+    font-weight: 700;
+    color: #2d3a5c;
+    background: #fff;
+  }
+
+  .preview-label {
+    font-size: 0.85rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #22c68a;
+  }
+
+  .preview-text {
+    font-size: 1.05rem;
+    font-weight: 600;
+    line-height: 1.6;
+    color: #2d3a5c;
+    background: #f0faf5;
+    border-radius: 12px;
+    padding: 16px 18px;
+    border: 2px solid #c8edd9;
+    min-height: 60px;
+  }
+
+  .url-text {
+    font-size: 1.1rem;
+    font-weight: 800;
+    color: #3b6cf5;
+    background: #f5f7ff;
+    border-radius: 12px;
+    padding: 16px 18px;
+    border: 2px solid #e2e7f5;
+    word-break: break-all;
+  }
+
+  .copy-btn {
+    align-self: stretch;
+    padding: 16px;
+    border: none;
+    border-radius: 14px;
+    font-family: 'Nunito', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 800;
+    cursor: pointer;
+    transition: transform 0.15s, box-shadow 0.15s;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .copy-btn:active {
+    transform: scale(0.97);
+  }
+
+  .copy-btn.prompt-btn {
+    background: #3b6cf5;
+    color: #fff;
+    box-shadow: 0 4px 14px rgba(59,108,245,0.35);
+  }
+
+  .copy-btn.url-btn {
+    background: #22c68a;
+    color: #fff;
+    box-shadow: 0 4px 14px rgba(34,198,138,0.35);
+  }
+
+  .copy-btn.copied {
+    background: #2d3a5c !important;
+    box-shadow: 0 4px 14px rgba(45,58,92,0.25) !important;
+  }
+
+  .instructions {
+    text-align: center;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #8892ad;
+    line-height: 1.5;
+  }
+</style>
+</head>
+<body>
+
+<div class="card-container">
+  <h1>🎮 Build Your Prompt</h1>
+
+  <!-- Step 1: Copy the URL -->
+  <div class="copy-card">
+    <span class="label">Step 1 — Copy this link</span>
+    <div class="url-text" id="urlText">https://chat.uat.jcgoai.hk</div>
+    <button class="copy-btn url-btn" id="urlBtn" onclick="copyText('url')">
+      📋 &nbsp;Copy Link
+    </button>
+  </div>
+
+  <!-- Step 2: Build and copy the prompt -->
+  <div class="copy-card">
+    <span class="label">Step 2 — Pick your choices</span>
+    <div class="prompt-builder">
+      For
+      <select class="inline-select" data-slot="device" onchange="updatePreview()">
+        <option value="an iPad">an iPad</option>
+        <option value="a PC">a PC</option>
+      </select>, create a
+      <select class="inline-select" data-slot="game" onchange="updatePreview()">
+        <option value="catching">catching</option>
+        <option value="popping">popping</option>
+        <option value="sorting">sorting</option>
+      </select>
+      game using code to help students learn to compare fractions (larger or smaller than X, e.g. ½ or 1). Please make the game elements look like
+      <select class="inline-select" data-slot="theme" onchange="updatePreview()">
+        <option value="fish 🐟">fish 🐟</option>
+        <option value="kittens 🐱">kittens 🐱</option>
+        <option value="cakes 🎂">cakes 🎂</option>
+        <option value="bubble teas 🧋">bubble teas 🧋</option>
+      </select>.
+    </div>
+
+    <span class="preview-label">Your prompt</span>
+    <div class="preview-text" id="previewText"></div>
+
+    <button class="copy-btn prompt-btn" id="promptBtn" onclick="copyText('prompt')">
+      📋 &nbsp;Copy Prompt
+    </button>
+  </div>
+
+  <p class="instructions">
+    Paste the link into Safari to open the chatbot.<br>
+    Then paste the prompt into the chat. 🚀
+  </p>
+</div>
+
+<script>
+function getSelections() {
+  const result = {};
+  document.querySelectorAll('.inline-select').forEach(sel => {
+    result[sel.dataset.slot] = sel.value;
+  });
+  return result;
+}
+
+function buildPrompt() {
+  const s = getSelections();
+  return `For ${s.device}, create a ${s.game} game using code to help students learn to compare fractions (larger or smaller than X, e.g. ½ or 1). Please make the game elements look like ${s.theme}.`;
+}
+
+function updatePreview() {
+  document.getElementById('previewText').textContent = buildPrompt();
+}
+
+// Initial render
+updatePreview();
+
+function copyText(type) {
+  const text = type === 'url'
+    ? document.getElementById('urlText').textContent
+    : buildPrompt();
+
+  const btn = type === 'url'
+    ? document.getElementById('urlBtn')
+    : document.getElementById('promptBtn');
+
+  navigator.clipboard.writeText(text).then(() => {
+    showCopied(btn);
+  }).catch(() => {
+    const ta = document.createElement('textarea');
+    ta.value = text;
+    ta.style.position = 'fixed';
+    ta.style.opacity = '0';
+    document.body.appendChild(ta);
+    ta.select();
+    document.execCommand('copy');
+    document.body.removeChild(ta);
+    showCopied(btn);
+  });
+}
+
+function showCopied(btn) {
+  const original = btn.innerHTML;
+  btn.innerHTML = '✅ &nbsp;Copied!';
+  btn.classList.add('copied');
+  setTimeout(() => {
+    btn.innerHTML = original;
+    btn.classList.remove('copied');
+  }, 2000);
+}
+</script>
+
+</body>
+</html>
