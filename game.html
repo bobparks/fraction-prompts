@@ -5,17 +5,15 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Build Your Prompt ✨</title>
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@600;800&display=swap');
-
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
   body {
-    font-family: 'Nunito', sans-serif;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
     min-height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
-    background: #f0f4ff;
+    background: #0f1f45;
     padding: 24px;
   }
 
@@ -30,53 +28,53 @@
   h1 {
     text-align: center;
     font-size: 1.8rem;
-    font-weight: 800;
-    color: #2d3a5c;
+    font-weight: 700;
+    color: #d4a843;
   }
 
   .copy-card {
-    background: #fff;
+    background: #1b2d5b;
     border-radius: 20px;
     padding: 28px 24px;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    box-shadow: 0 4px 24px rgba(0,0,0,0.3);
     display: flex;
     flex-direction: column;
     gap: 16px;
+    border: 1px solid rgba(212,168,67,0.2);
   }
 
   .label {
     font-size: 0.85rem;
-    font-weight: 800;
+    font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.08em;
-    color: #8892ad;
+    color: #d4a843;
   }
 
   .prompt-builder {
     font-size: 1.15rem;
-    font-weight: 600;
+    font-weight: 500;
     line-height: 2.4;
-    color: #2d3a5c;
-    background: #f5f7ff;
+    color: #e8eaf0;
+    background: rgba(255,255,255,0.07);
     border-radius: 12px;
     padding: 16px 18px;
-    border: 2px solid #e2e7f5;
+    border: 1px solid rgba(255,255,255,0.12);
   }
 
-  /* Inline dropdown styling */
   .inline-select {
-    font-family: 'Nunito', sans-serif;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
     font-size: 1rem;
-    font-weight: 800;
-    color: #fff;
-    background: #3b6cf5;
+    font-weight: 700;
+    color: #0f1f45;
+    background: #d4a843;
     border: none;
     border-radius: 8px;
     padding: 5px 10px;
     cursor: pointer;
     -webkit-appearance: none;
     appearance: none;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='white' stroke-width='2' fill='none'/%3E%3C/svg%3E");
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%230f1f45' stroke-width='2' fill='none'/%3E%3C/svg%3E");
     background-repeat: no-repeat;
     background-position: right 8px center;
     padding-right: 26px;
@@ -84,45 +82,34 @@
   }
 
   .inline-select:focus {
-    outline: 3px solid rgba(59,108,245,0.35);
+    outline: 3px solid rgba(212,168,67,0.5);
     outline-offset: 1px;
   }
 
   .inline-select option {
     font-weight: 700;
-    color: #2d3a5c;
+    color: #0f1f45;
     background: #fff;
   }
 
   .preview-label {
     font-size: 0.85rem;
-    font-weight: 800;
+    font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.08em;
-    color: #22c68a;
+    color: #a8d5a2;
   }
 
   .preview-text {
     font-size: 1.05rem;
-    font-weight: 600;
+    font-weight: 500;
     line-height: 1.6;
-    color: #2d3a5c;
-    background: #f0faf5;
+    color: #e8eaf0;
+    background: rgba(168,213,162,0.1);
     border-radius: 12px;
     padding: 16px 18px;
-    border: 2px solid #c8edd9;
+    border: 1px solid rgba(168,213,162,0.25);
     min-height: 60px;
-  }
-
-  .url-text {
-    font-size: 1.1rem;
-    font-weight: 800;
-    color: #3b6cf5;
-    background: #f5f7ff;
-    border-radius: 12px;
-    padding: 16px 18px;
-    border: 2px solid #e2e7f5;
-    word-break: break-all;
   }
 
   .copy-btn {
@@ -130,40 +117,52 @@
     padding: 16px;
     border: none;
     border-radius: 14px;
-    font-family: 'Nunito', sans-serif;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
     font-size: 1.1rem;
-    font-weight: 800;
+    font-weight: 700;
     cursor: pointer;
     transition: transform 0.15s, box-shadow 0.15s;
     -webkit-tap-highlight-color: transparent;
+    background: #d4a843;
+    color: #0f1f45;
+    box-shadow: 0 4px 14px rgba(212,168,67,0.35);
   }
 
   .copy-btn:active {
     transform: scale(0.97);
   }
 
-  .copy-btn.prompt-btn {
-    background: #3b6cf5;
-    color: #fff;
-    box-shadow: 0 4px 14px rgba(59,108,245,0.35);
-  }
-
-  .copy-btn.url-btn {
-    background: #22c68a;
-    color: #fff;
-    box-shadow: 0 4px 14px rgba(34,198,138,0.35);
-  }
-
   .copy-btn.copied {
-    background: #2d3a5c !important;
-    box-shadow: 0 4px 14px rgba(45,58,92,0.25) !important;
+    background: #a8d5a2 !important;
+    color: #0f1f45 !important;
+    box-shadow: 0 4px 14px rgba(168,213,162,0.3) !important;
+  }
+
+  .link-btn {
+    display: block;
+    text-align: center;
+    padding: 16px;
+    border-radius: 14px;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    text-decoration: none;
+    color: #0f1f45;
+    background: #e8eaf0;
+    box-shadow: 0 4px 14px rgba(255,255,255,0.15);
+    transition: transform 0.15s, box-shadow 0.15s;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .link-btn:active {
+    transform: scale(0.97);
   }
 
   .instructions {
     text-align: center;
     font-size: 0.95rem;
-    font-weight: 600;
-    color: #8892ad;
+    font-weight: 500;
+    color: rgba(232,234,240,0.6);
     line-height: 1.5;
   }
 </style>
@@ -173,18 +172,9 @@
 <div class="card-container">
   <h1>🎮 Build Your Prompt</h1>
 
-  <!-- Step 1: Copy the URL -->
+  <!-- Step 1: Build and copy the prompt -->
   <div class="copy-card">
-    <span class="label">Step 1 — Copy this link</span>
-    <div class="url-text" id="urlText">https://chat.uat.jcgoai.hk</div>
-    <button class="copy-btn url-btn" id="urlBtn" onclick="copyText('url')">
-      📋 &nbsp;Copy Link
-    </button>
-  </div>
-
-  <!-- Step 2: Build and copy the prompt -->
-  <div class="copy-card">
-    <span class="label">Step 2 — Pick your choices</span>
+    <span class="label">Step 1 — Pick your choices</span>
     <div class="prompt-builder">
       For
       <select class="inline-select" data-slot="device" onchange="updatePreview()">
@@ -208,14 +198,22 @@
     <span class="preview-label">Your prompt</span>
     <div class="preview-text" id="previewText"></div>
 
-    <button class="copy-btn prompt-btn" id="promptBtn" onclick="copyText('prompt')">
+    <button class="copy-btn" id="promptBtn" onclick="copyText()">
       📋 &nbsp;Copy Prompt
     </button>
   </div>
 
+  <!-- Step 2: Open the Chatbot -->
+  <div class="copy-card">
+    <span class="label">Step 2 — Open the chatbot</span>
+    <a class="link-btn" href="https://chat.uat.jcgoai.hk" target="_blank">
+      🚀 &nbsp;Open Chatbot
+    </a>
+  </div>
+
   <p class="instructions">
-    Paste the link into Safari to open the chatbot.<br>
-    Then paste the prompt into the chat. 🚀
+    Open the chatbot.<br>
+    Then paste the prompt into the chat using either Gemini or ChatGPT. 🚀
   </p>
 </div>
 
@@ -237,17 +235,11 @@ function updatePreview() {
   document.getElementById('previewText').textContent = buildPrompt();
 }
 
-// Initial render
 updatePreview();
 
-function copyText(type) {
-  const text = type === 'url'
-    ? document.getElementById('urlText').textContent
-    : buildPrompt();
-
-  const btn = type === 'url'
-    ? document.getElementById('urlBtn')
-    : document.getElementById('promptBtn');
+function copyText() {
+  const text = buildPrompt();
+  const btn = document.getElementById('promptBtn');
 
   navigator.clipboard.writeText(text).then(() => {
     showCopied(btn);
