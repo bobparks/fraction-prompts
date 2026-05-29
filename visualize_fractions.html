@@ -51,15 +51,65 @@
     color: #d4a843;
   }
 
-  .prompt-text {
+  .prompt-builder {
     font-size: 1.15rem;
     font-weight: 500;
-    line-height: 1.6;
+    line-height: 2.4;
     color: #e8eaf0;
     background: rgba(255,255,255,0.07);
     border-radius: 12px;
     padding: 16px 18px;
     border: 1px solid rgba(255,255,255,0.12);
+  }
+
+  .inline-select {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    color: #0f1f45;
+    background: #d4a843;
+    border: none;
+    border-radius: 8px;
+    padding: 5px 10px;
+    cursor: pointer;
+    -webkit-appearance: none;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%230f1f45' stroke-width='2' fill='none'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 8px center;
+    padding-right: 26px;
+    vertical-align: middle;
+  }
+
+  .inline-select:focus {
+    outline: 3px solid rgba(212,168,67,0.5);
+    outline-offset: 1px;
+  }
+
+  .inline-select option {
+    font-weight: 700;
+    color: #0f1f45;
+    background: #fff;
+  }
+
+  .preview-label {
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #a8d5a2;
+  }
+
+  .preview-text {
+    font-size: 1.05rem;
+    font-weight: 500;
+    line-height: 1.6;
+    color: #e8eaf0;
+    background: rgba(168,213,162,0.1);
+    border-radius: 12px;
+    padding: 16px 18px;
+    border: 1px solid rgba(168,213,162,0.25);
+    min-height: 60px;
   }
 
   .copy-btn {
@@ -120,12 +170,24 @@
 <body>
 
 <div class="card-container">
-  <h1>📐 Fraction Representations Prompt</h1>
+  <h1>📐 Visualized Maths Prompt</h1>
 
-  <!-- Step 1: Copy the Prompt -->
+  <!-- Step 1: Build and copy the prompt -->
   <div class="copy-card">
-    <span class="label">Step 1 — Copy this prompt</span>
-    <div class="prompt-text" id="promptText">Can you help me learn to add fractions using different representations (box model, number line, circles) dynamically and interactively? It should enable me to input two fractions with different denominators, and correctly show the mixed fractions / improper fractions.</div>
+    <span class="label">Step 1 — Pick your choice and copy</span>
+    <div class="prompt-builder">
+      Can you help me learn to add fractions using a
+      <select class="inline-select" data-slot="representation" onchange="updatePreview()">
+        <option value="box model">box model</option>
+        <option value="number line">number line</option>
+        <option value="circles">circles</option>
+      </select>
+      dynamically and interactively? It should enable me to input two fractions with different denominators, and correctly show the mixed fractions or improper fractions.
+    </div>
+
+    <span class="preview-label">Your prompt</span>
+    <div class="preview-text" id="previewText"></div>
+
     <button class="copy-btn" id="promptBtn" onclick="copyText()">
       📋 &nbsp;Copy Prompt
     </button>
@@ -146,18 +208,23 @@
 </div>
 
 <script>
+function buildPrompt() {
+  const rep = document.querySelector('[data-slot="representation"]').value;
+  return `Can you help me learn to add fractions using a ${rep} dynamically and interactively? It should enable me to input two fractions with different denominators, and correctly show the mixed fractions or improper fractions.`;
+}
+
+function updatePreview() {
+  document.getElementById('previewText').textContent = buildPrompt();
+}
+
+updatePreview();
+
 function copyText() {
-  const text = document.getElementById('promptText').textContent;
+  const text = buildPrompt();
   const btn = document.getElementById('promptBtn');
 
   navigator.clipboard.writeText(text).then(() => {
-    const original = btn.innerHTML;
-    btn.innerHTML = '✅ &nbsp;Copied!';
-    btn.classList.add('copied');
-    setTimeout(() => {
-      btn.innerHTML = original;
-      btn.classList.remove('copied');
-    }, 2000);
+    showCopied(btn);
   }).catch(() => {
     const ta = document.createElement('textarea');
     ta.value = text;
@@ -167,15 +234,18 @@ function copyText() {
     ta.select();
     document.execCommand('copy');
     document.body.removeChild(ta);
-
-    const original = btn.innerHTML;
-    btn.innerHTML = '✅ &nbsp;Copied!';
-    btn.classList.add('copied');
-    setTimeout(() => {
-      btn.innerHTML = original;
-      btn.classList.remove('copied');
-    }, 2000);
+    showCopied(btn);
   });
+}
+
+function showCopied(btn) {
+  const original = btn.innerHTML;
+  btn.innerHTML = '✅ &nbsp;Copied!';
+  btn.classList.add('copied');
+  setTimeout(() => {
+    btn.innerHTML = original;
+    btn.classList.remove('copied');
+  }, 2000);
 }
 </script>
 
