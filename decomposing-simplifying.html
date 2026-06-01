@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Copy Your Prompt ✨</title>
+<title>Build Your Prompt ✨</title>
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -51,8 +51,8 @@
     color: #d4a843;
   }
 
-  .prompt-text {
-    font-size: 1.15rem;
+  .prompt-intro {
+    font-size: 1rem;
     font-weight: 500;
     line-height: 1.6;
     color: #e8eaf0;
@@ -60,6 +60,193 @@
     border-radius: 12px;
     padding: 16px 18px;
     border: 1px solid rgba(255,255,255,0.12);
+  }
+
+  .equation-builder {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    align-items: center;
+  }
+
+  .equation-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .operator-select {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #0f1f45;
+    background: #d4a843;
+    border: none;
+    border-radius: 8px;
+    padding: 6px 10px;
+    cursor: pointer;
+    -webkit-appearance: none;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%230f1f45' stroke-width='2' fill='none'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 6px center;
+    padding-right: 22px;
+    text-align: center;
+    width: 60px;
+  }
+
+  .operator-select:focus {
+    outline: 3px solid rgba(212,168,67,0.5);
+    outline-offset: 1px;
+  }
+
+  .operator-select option {
+    font-weight: 700;
+    color: #0f1f45;
+    background: #fff;
+  }
+
+  .element-group {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 12px;
+    padding: 10px 14px;
+    border: 1px solid rgba(255,255,255,0.15);
+  }
+
+  .whole-input {
+    width: 44px;
+    height: 44px;
+    text-align: center;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #e8eaf0;
+    background: rgba(255,255,255,0.12);
+    border: 2px solid rgba(212,168,67,0.4);
+    border-radius: 8px;
+    -webkit-appearance: none;
+  }
+
+  .whole-input:focus {
+    outline: none;
+    border-color: #d4a843;
+    background: rgba(255,255,255,0.18);
+  }
+
+  .fraction-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+  }
+
+  .frac-input {
+    width: 40px;
+    height: 32px;
+    text-align: center;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #e8eaf0;
+    background: rgba(255,255,255,0.12);
+    border: 2px solid rgba(212,168,67,0.4);
+    border-radius: 6px;
+    -webkit-appearance: none;
+  }
+
+  .frac-input:focus {
+    outline: none;
+    border-color: #d4a843;
+    background: rgba(255,255,255,0.18);
+  }
+
+  .frac-line {
+    width: 36px;
+    height: 3px;
+    background: #d4a843;
+    border-radius: 2px;
+  }
+
+  .remove-btn {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(255,100,100,0.3);
+    color: #ff9999;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    -webkit-tap-highlight-color: transparent;
+    margin-left: 4px;
+  }
+
+  .remove-btn:active {
+    background: rgba(255,100,100,0.5);
+  }
+
+  .add-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 10px 20px;
+    border: 2px dashed rgba(212,168,67,0.4);
+    border-radius: 12px;
+    background: transparent;
+    color: #d4a843;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 0.95rem;
+    font-weight: 700;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    transition: border-color 0.15s, background 0.15s;
+  }
+
+  .add-btn:active {
+    background: rgba(212,168,67,0.1);
+    border-color: #d4a843;
+  }
+
+  .add-icon {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: #d4a843;
+    color: #0f1f45;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    font-weight: 800;
+  }
+
+  .preview-label {
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #a8d5a2;
+  }
+
+  .preview-text {
+    font-size: 1.05rem;
+    font-weight: 500;
+    line-height: 1.6;
+    color: #e8eaf0;
+    background: rgba(168,213,162,0.1);
+    border-radius: 12px;
+    padding: 16px 18px;
+    border: 1px solid rgba(168,213,162,0.25);
+    min-height: 60px;
   }
 
   .copy-btn {
@@ -115,17 +302,38 @@
     color: rgba(232,234,240,0.6);
     line-height: 1.5;
   }
+
+  .element-label {
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: rgba(232,234,240,0.4);
+    text-align: center;
+  }
 </style>
 </head>
 <body>
 
 <div class="card-container">
-  <h1>🧩 Using AI for Decomposing and Simplifying Your Maths Problems</h1>
+  <h1>🧩 Decomposing Problems Prompt</h1>
 
-  <!-- Step 1: Copy the Prompt -->
+  <!-- Step 1: Build the equation and copy -->
   <div class="copy-card">
-    <span class="label">Step 1 — Copy this prompt</span>
-    <div class="prompt-text" id="promptText">You are a mathematics teacher. I am a Hong Kong P5 student. Do not directly tell me the answer. Instead, divide a subtraction problem with mixed numbers into several smaller sub-problems.</div>
+    <span class="label">Step 1 — Build your equation</span>
+    <div class="prompt-intro">
+      You are a mathematics teacher. I am a Hong Kong P5 student. Do not directly tell me the answer. Instead, divide the problem below into smaller sub-problems that will help me find the answer.
+    </div>
+
+    <div class="equation-builder" id="equationBuilder">
+      <!-- Elements are injected by JS -->
+    </div>
+
+    <button class="add-btn" onclick="addElement()">
+      <span class="add-icon">+</span> Add another number
+    </button>
+
+    <span class="preview-label">Your prompt</span>
+    <div class="preview-text" id="previewText"></div>
+
     <button class="copy-btn" id="promptBtn" onclick="copyText()">
       📋 &nbsp;Copy Prompt
     </button>
@@ -141,13 +349,140 @@
 
   <p class="instructions">
     Open the chatbot.<br>
-    Then paste the prompt into the chat using any AI model. 🚀
+    Then paste the prompt into the chat using either Gemini or ChatGPT. 🚀
   </p>
 </div>
 
 <script>
+let elementCount = 0;
+
+function createElementHTML(index) {
+  const showOperator = index > 0;
+  const showRemove = index > 1;
+
+  let html = '<div class="equation-row" data-index="' + index + '">';
+
+  if (showOperator) {
+    html += '<select class="operator-select" onchange="updatePreview()">' +
+      '<option value="+">+</option>' +
+      '<option value="−">−</option>' +
+      '</select>';
+  }
+
+  html += '<div class="element-group">' +
+    '<div style="display:flex;flex-direction:column;align-items:center;gap:2px;">' +
+    '<span class="element-label">whole</span>' +
+    '<input type="number" class="whole-input" placeholder="0" min="0" max="99" oninput="updatePreview()">' +
+    '</div>' +
+    '<div class="fraction-group">' +
+    '<input type="number" class="frac-input frac-num" placeholder="0" min="0" max="99" oninput="updatePreview()">' +
+    '<div class="frac-line"></div>' +
+    '<input type="number" class="frac-input frac-den" placeholder="1" min="1" max="99" oninput="updatePreview()">' +
+    '</div>' +
+    '</div>';
+
+  if (showRemove) {
+    html += '<button class="remove-btn" onclick="removeElement(' + index + ')">✕</button>';
+  }
+
+  html += '</div>';
+  return html;
+}
+
+function renderElements() {
+  const builder = document.getElementById('equationBuilder');
+  builder.innerHTML = '';
+  for (let i = 0; i < elementCount; i++) {
+    builder.innerHTML += createElementHTML(i);
+  }
+  updatePreview();
+}
+
+function addElement() {
+  elementCount++;
+  renderElements();
+}
+
+function removeElement(index) {
+  // Gather current values
+  const rows = document.querySelectorAll('.equation-row');
+  const values = [];
+  rows.forEach((row, i) => {
+    values.push({
+      op: i > 0 ? row.querySelector('.operator-select').value : null,
+      whole: row.querySelector('.whole-input').value,
+      num: row.querySelector('.frac-num').value,
+      den: row.querySelector('.frac-den').value,
+    });
+  });
+
+  // Remove the element
+  values.splice(index, 1);
+  elementCount--;
+
+  // Re-render and restore values
+  renderElements();
+  const newRows = document.querySelectorAll('.equation-row');
+  values.forEach((val, i) => {
+    if (i > 0 && val.op) {
+      newRows[i].querySelector('.operator-select').value = val.op;
+    }
+    newRows[i].querySelector('.whole-input').value = val.whole;
+    newRows[i].querySelector('.frac-num').value = val.num;
+    newRows[i].querySelector('.frac-den').value = val.den;
+  });
+  updatePreview();
+}
+
+function formatElement(whole, num, den) {
+  const w = parseInt(whole) || 0;
+  const n = parseInt(num) || 0;
+  const d = parseInt(den) || 1;
+
+  if (w > 0 && n > 0) {
+    return w + ' ' + n + '/' + d;
+  } else if (w > 0) {
+    return '' + w;
+  } else if (n > 0) {
+    return n + '/' + d;
+  } else {
+    return '0';
+  }
+}
+
+function buildEquation() {
+  const rows = document.querySelectorAll('.equation-row');
+  let equation = '';
+
+  rows.forEach((row, i) => {
+    if (i > 0) {
+      const op = row.querySelector('.operator-select').value;
+      equation += ' ' + op + ' ';
+    }
+    const whole = row.querySelector('.whole-input').value;
+    const num = row.querySelector('.frac-num').value;
+    const den = row.querySelector('.frac-den').value;
+    equation += formatElement(whole, num, den);
+  });
+
+  return equation;
+}
+
+function buildPrompt() {
+  const eq = buildEquation();
+  return 'You are a mathematics teacher. I am a Hong Kong P5 student. Do not directly tell me the answer. Instead, divide the problem ' + eq + ' into smaller sub-problems that will help me find the answer.';
+}
+
+function updatePreview() {
+  document.getElementById('previewText').textContent = buildPrompt();
+}
+
+// Initialize with 2 elements
+elementCount = 2;
+renderElements();
+
 function copyText() {
-  const text = document.getElementById('promptText').textContent;
+  const text = buildPrompt();
   const btn = document.getElementById('promptBtn');
 
   navigator.clipboard.writeText(text).then(() => {
