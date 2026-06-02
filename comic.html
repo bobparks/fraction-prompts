@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Copy Your Prompt ✨</title>
+<title>Build Your Prompt ✨</title>
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -51,8 +51,8 @@
     color: #d4a843;
   }
 
-  .prompt-text {
-    font-size: 1.15rem;
+  .prompt-intro {
+    font-size: 1rem;
     font-weight: 500;
     line-height: 1.6;
     color: #e8eaf0;
@@ -60,6 +60,69 @@
     border-radius: 12px;
     padding: 16px 18px;
     border: 1px solid rgba(255,255,255,0.12);
+  }
+
+  .mic-hint {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #d4a843;
+    background: rgba(212,168,67,0.1);
+    border-radius: 10px;
+    padding: 10px 14px;
+    border: 1px solid rgba(212,168,67,0.2);
+  }
+
+  .mic-icon {
+    font-size: 1.3rem;
+  }
+
+  .word-problem-input {
+    width: 100%;
+    min-height: 120px;
+    padding: 16px 18px;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 1.1rem;
+    font-weight: 500;
+    line-height: 1.6;
+    color: #e8eaf0;
+    background: rgba(255,255,255,0.1);
+    border: 2px solid rgba(212,168,67,0.4);
+    border-radius: 12px;
+    resize: vertical;
+    -webkit-appearance: none;
+  }
+
+  .word-problem-input::placeholder {
+    color: rgba(232,234,240,0.35);
+  }
+
+  .word-problem-input:focus {
+    outline: none;
+    border-color: #d4a843;
+    background: rgba(255,255,255,0.14);
+  }
+
+  .preview-label {
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #a8d5a2;
+  }
+
+  .preview-text {
+    font-size: 1.05rem;
+    font-weight: 500;
+    line-height: 1.6;
+    color: #e8eaf0;
+    background: rgba(168,213,162,0.1);
+    border-radius: 12px;
+    padding: 16px 18px;
+    border: 1px solid rgba(168,213,162,0.25);
+    min-height: 60px;
   }
 
   .copy-btn {
@@ -120,12 +183,30 @@
 <body>
 
 <div class="card-container">
-  <h1>🎨 Fraction Comic Prompt</h1>
+  <h1>🎨 Maths Comic Prompt</h1>
 
-  <!-- Step 1: Copy the Prompt -->
+  <!-- Step 1: Enter word problem and copy -->
   <div class="copy-card">
-    <span class="label">Step 1 — Copy this prompt</span>
-    <div class="prompt-text" id="promptText">Can you draw a 6-panel comic about adding two kinds of drinks to create a fruit punch? The drinks are ½ cup of orange juice and ⅗ cup of 7-Up. Do not represent the fractions; instead, show me the final comic with the people interacting.</div>
+    <span class="label">Step 1 — Add your word problem</span>
+    <div class="prompt-intro">
+      Can you draw a 6-panel comic about the following word problem? The quantities should remain vague. Do not represent the fractions or other numbers; instead, show me the final comic with the characters interacting as described.
+    </div>
+
+    <div class="mic-hint">
+      <span class="mic-icon">🎤</span>
+      Write your word problem here, or use your device's microphone tool to speak the text.
+    </div>
+
+    <textarea
+      class="word-problem-input"
+      id="wordProblem"
+      placeholder="Type or speak your word problem here…"
+      oninput="updatePreview()"
+    ></textarea>
+
+    <span class="preview-label">Your prompt</span>
+    <div class="preview-text" id="previewText"></div>
+
     <button class="copy-btn" id="promptBtn" onclick="copyText()">
       📋 &nbsp;Copy Prompt
     </button>
@@ -141,13 +222,34 @@
 
   <p class="instructions">
     Open the chatbot.<br>
-    Then paste the prompt into the chat using the Nano Banana Pro model. 🚀
+    Then paste the prompt into the chat using either Gemini or ChatGPT. 🚀
   </p>
 </div>
 
 <script>
+function buildPrompt() {
+  const problem = document.getElementById('wordProblem').value.trim();
+  const base = 'Can you draw a 6-panel comic about the following word problem? The quantities should remain vague. Do not represent the fractions or other numbers; instead, show me the final comic with the characters interacting as described:';
+  if (problem) {
+    return base + ' ' + problem;
+  }
+  return base + ' (enter your word problem above)';
+}
+
+function updatePreview() {
+  document.getElementById('previewText').textContent = buildPrompt();
+}
+
+updatePreview();
+
 function copyText() {
-  const text = document.getElementById('promptText').textContent;
+  const problem = document.getElementById('wordProblem').value.trim();
+  if (!problem) {
+    document.getElementById('wordProblem').focus();
+    return;
+  }
+
+  const text = buildPrompt();
   const btn = document.getElementById('promptBtn');
 
   navigator.clipboard.writeText(text).then(() => {
