@@ -314,13 +314,13 @@
 <body>
 
 <div class="card-container">
-  <h1>🧩 Decomposing Problems Prompt</h1>
+  <h1>🧩  拆解數學題提示詞</h1>
 
   <!-- Step 1: Build the equation and copy -->
   <div class="copy-card">
-    <span class="label">Step 1 — Build your equation</span>
+    <span class="label">步驟 1: 輸入算式</span>
     <div class="prompt-intro">
-      You are a mathematics teacher. I am a Hong Kong P5 student. Do not directly tell me the answer. Instead, divide the problem below into smaller sub-problems that will help me find the answer.
+      你是數學老師，我是香港的小五學生。把以下問題拆解成幾個小問題，引導我找出答案，不要直接說答案。
     </div>
 
     <div class="equation-builder" id="equationBuilder">
@@ -328,27 +328,27 @@
     </div>
 
     <button class="add-btn" onclick="addElement()">
-      <span class="add-icon">+</span> Add another number
+      <span class="add-icon">+</span> 輸入其他數字
     </button>
 
-    <span class="preview-label">Your prompt</span>
+    <span class="preview-label">你的提示詞</span>
     <div class="preview-text" id="previewText"></div>
 
     <button class="copy-btn" id="promptBtn" onclick="copyText()">
-      📋 &nbsp;Copy Prompt
+      📋 &nbsp;複製提示詞
     </button>
   </div>
 
   <!-- Step 2: Open the Chatbot -->
   <div class="copy-card">
-    <span class="label">Step 2 — Open the chatbot</span>
+    <span class="label">第二步 - 開啟聊天機器人</span>
     <a class="link-btn" href="https://chat.uat.jcgoai.hk" target="_blank">
-      🚀 &nbsp;Open Chatbot
+      🚀 &nbsp;開啟聊天機器人
     </a>
   </div>
 
   <p class="instructions">
-   Open the chatbot.<br>
+    Open the chatbot.<br>
     Then paste the prompt into the chat using any AI model. 🚀
   </p>
 </div>
@@ -371,7 +371,7 @@ function createElementHTML(index) {
 
   html += '<div class="element-group">' +
     '<div style="display:flex;flex-direction:column;align-items:center;gap:2px;">' +
-    '<span class="element-label">whole</span>' +
+    '<span class="element-label">整數</span>' +
     '<input type="number" class="whole-input" placeholder="0" min="0" max="99" oninput="updatePreview()">' +
     '</div>' +
     '<div class="fraction-group">' +
@@ -502,7 +502,7 @@ function copyText() {
 
 function showCopied(btn) {
   const original = btn.innerHTML;
-  btn.innerHTML = '✅ &nbsp;Copied!';
+  btn.innerHTML = '✅ &nbsp;複製成功！';
   btn.classList.add('copied');
   setTimeout(() => {
     btn.innerHTML = original;

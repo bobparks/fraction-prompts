@@ -183,46 +183,46 @@
 <body>
 
 <div class="card-container">
-  <h1>🎨 Maths Comic Prompt</h1>
+  <h1>🎨 數學漫畫提示詞</h1>
 
   <!-- Step 1: Enter word problem and copy -->
   <div class="copy-card">
-    <span class="label">Step 1 — Add your word problem</span>
+    <span class="label">步驟 1 — 添加應用題</span>
     <div class="prompt-intro">
-      Can you draw a 6-panel comic about the following word problem? The quantities should remain vague. Do not represent the fractions or other numbers; instead, show me the final comic with the characters interacting as described.
+      請把以下數學應用題畫成六格漫畫。畫面里不需要出現具體的數字或分數（模糊處理即可），請按照描述，畫出人物互動的最終漫畫。應用題：
     </div>
 
     <div class="mic-hint">
       <span class="mic-icon">🎤</span>
-      Write your word problem here, or use your device's microphone tool to speak the text.
+     打字，或語音輸入應用題。
     </div>
 
     <textarea
       class="word-problem-input"
       id="wordProblem"
-      placeholder="Type or speak your word problem here…"
+      placeholder="在此處輸入應用題......"
       oninput="updatePreview()"
     ></textarea>
 
-    <span class="preview-label">Your prompt</span>
+    <span class="preview-label">你的提示詞</span>
     <div class="preview-text" id="previewText"></div>
 
     <button class="copy-btn" id="promptBtn" onclick="copyText()">
-      📋 &nbsp;Copy Prompt
+      📋 &nbsp;複製提示詞
     </button>
   </div>
 
   <!-- Step 2: Open the Chatbot -->
   <div class="copy-card">
-    <span class="label">Step 2 — Open the chatbot</span>
+    <span class="label">第二步 - 開啟聊天機器人</span>
     <a class="link-btn" href="https://chat.uat.jcgoai.hk" target="_blank">
-      🚀 &nbsp;Open Chatbot
+      🚀 &nbsp;開啟聊天機器人
     </a>
   </div>
 
   <p class="instructions">
     Open the chatbot.<br>
-    Then paste the prompt into the chat using either Gemini or ChatGPT. 🚀
+    Then paste the prompt into the chat using the Nano Banana tool in the toolbox. 🚀
   </p>
 </div>
 
@@ -269,7 +269,7 @@ function copyText() {
 
 function showCopied(btn) {
   const original = btn.innerHTML;
-  btn.innerHTML = '✅ &nbsp;Copied!';
+  btn.innerHTML = '✅ &nbsp;複製成功！';
   btn.classList.add('copied');
   setTimeout(() => {
     btn.innerHTML = original;
