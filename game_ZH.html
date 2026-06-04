@@ -234,7 +234,7 @@ function getSelections() {
 
 function buildPrompt() {
   const s = getSelections();
-  return `For ${s.device}, create a ${s.game} game using code to help students learn ${s.concept}. Please make the game elements look like ${s.theme}.`;
+  return `在 ${s.device}, 編寫程式碼製作 ${s.game} 遊戲幫助學生學習 ${s.concept}。請讓遊戲元素看起來像 ${s.theme}.`;
 }
 
 function updatePreview() {
