@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Build Your Prompt ✨</title>
+<title>設計提示詞 ✨</title>
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -170,11 +170,11 @@
 <body>
 
 <div class="card-container">
-  <h1>✏️ Maths Practice Question Prompt</h1>
+  <h1>✏️ 數學題提示詞</h1>
 
   <!-- Step 1: Build and copy the prompt -->
   <div class="copy-card">
-    <span class="label">Step 1 — Pick your choices</span>
+    <span class="label">步驟 1 — 選擇並複製</span>
     <div class="prompt-builder">
       Create
       <select class="inline-select" data-slot="count" onchange="updatePreview()">
@@ -199,25 +199,25 @@
       two mixed numbers.
     </div>
 
-    <span class="preview-label">Your prompt</span>
+    <span class="preview-label">最終生成的提示詞</span>
     <div class="preview-text" id="previewText"></div>
 
     <button class="copy-btn" id="promptBtn" onclick="copyText()">
-      📋 &nbsp;Copy Prompt
+      📋 &nbsp;複製提示詞
     </button>
   </div>
 
   <!-- Step 2: Open the Chatbot -->
   <div class="copy-card">
-    <span class="label">Step 2 — Open the chatbot</span>
+    <span class="label">第二步 - 開啟聊天機器人</span>
     <a class="link-btn" href="https://chat.uat.jcgoai.hk" target="_blank">
-      🚀 &nbsp;Open Chatbot
+      🚀 &nbsp;開啟聊天機器人
     </a>
   </div>
 
   <p class="instructions">
-    Open the chatbot.<br>
-    Then paste the prompt into the chat using any AI model. 🚀
+    開啟聊天機器人，<br>
+然後把提示詞貼上聊天視窗，可使用任何人工智能模型。 🚀
   </p>
 </div>
 
@@ -256,11 +256,11 @@ function copyText() {
 
 function showCopied(btn) {
   const original = btn.innerHTML;
-  btn.innerHTML = '✅ &nbsp;Copied!';
+  btn.innerHTML = '✅ &nbsp;複製成功！';
   btn.classList.add('copied');
   setTimeout(() => {
     btn.innerHTML = original;
-    btn.classList.remove('copied');
+    btn.classList.remove('複製成功！');
   }, 2000);
 }
 </script>
