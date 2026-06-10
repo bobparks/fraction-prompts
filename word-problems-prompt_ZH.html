@@ -236,7 +236,7 @@
 <script>
 function buildPrompt() {
   const problem = document.getElementById('wordProblem').value.trim();
-  const base = '你是數學老師，我是香港的小五學生。把以下的應用題拆解成幾個小問題，來引導我找到答案，你不能直接說出答案。應用題';
+  const base = '你是數學老師，我是香港的小五學生。把以下的應用題拆解成幾個小問題，來引導我找到答案，你不能直接說出答案。應用題:';
   if (problem) {
     return base + ' ' + problem;
   }
