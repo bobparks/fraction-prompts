@@ -190,28 +190,28 @@
 <body>
 
 <div class="card-container">
-  <h1>🧩 Decompose a Word Problem</h1>
+  <h1>🧩 拆解數學應用題提示詞</h1>
 
   <!-- Step 1: Enter word problem and copy -->
   <div class="copy-card">
-    <span class="label">Step 1 — Enter your word problem</span>
+    <span class="label">第一步 - 輸入應用題</span>
     <div class="prompt-intro">
-      You are a mathematics teacher. I am a Hong Kong P5 student. Do not directly tell me the answer. Instead, divide this word problem into smaller sub-problems that will help me find the answer.
+      你是數學老師，我是香港的小五學生。把以下的應用題拆解成幾個小問題，來引導我找到答案，你不能直接說出答案。
     </div>
 
     <div class="mic-hint">
       <span class="mic-icon">🎤</span>
-      打字，或語音輸入應用題。
+        打字或語音輸入應用題。
     </div>
 
     <textarea
       class="word-problem-input"
       id="wordProblem"
-      placeholder="Type or speak your word problem here…"
+      placeholder="在此輸入應用題⋯⋯"
       oninput="updatePreview()"
     ></textarea>
 
-    <span class="preview-label">你的提示詞</span>
+    <span class="preview-label">最終生成的提示詞</span>
     <div class="preview-text" id="previewText"></div>
 
     <button class="copy-btn" id="promptBtn" onclick="copyText()">
@@ -236,11 +236,11 @@
 <script>
 function buildPrompt() {
   const problem = document.getElementById('wordProblem').value.trim();
-  const base = 'You are a mathematics teacher. I am a Hong Kong P5 student. Do not directly tell me the answer. Instead, divide this word problem into smaller sub-problems that will help me find the answer:';
+  const base = '你是數學老師，我是香港的小五學生。把以下的應用題拆解成幾個小問題，來引導我找到答案，你不能直接說出答案。應用題';
   if (problem) {
     return base + ' ' + problem;
   }
-  return base + ' (enter your word problem above)';
+  return base + '（請在上面方框輸入應用題';
 }
 
 function updatePreview() {
