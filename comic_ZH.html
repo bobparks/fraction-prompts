@@ -187,14 +187,14 @@
 
   <!-- Step 1: Enter word problem and copy -->
   <div class="copy-card">
-    <span class="label">步驟 1 — 添加應用題</span>
+    <span class="label">第一步 - 添加應用題</span>
     <div class="prompt-intro">
       請把以下數學應用題畫成六格漫畫。畫面里不需要出現具體的數字或分數（模糊處理即可），請按照描述，畫出人物互動的最終漫畫。應用題：
     </div>
 
     <div class="mic-hint">
       <span class="mic-icon">🎤</span>
-     打字，或語音輸入應用題。
+     打字或語音輸入應用題。
     </div>
 
     <textarea
@@ -204,7 +204,7 @@
       oninput="updatePreview()"
     ></textarea>
 
-    <span class="preview-label">你的提示詞</span>
+    <span class="preview-label">最終生成的提示詞</span>
     <div class="preview-text" id="previewText"></div>
 
     <button class="copy-btn" id="promptBtn" onclick="copyText()">
@@ -221,8 +221,8 @@
   </div>
 
   <p class="instructions">
-    Open the chatbot.<br>
-    Then paste the prompt into the chat using the Nano Banana tool in the toolbox. 🚀
+   開啟聊天機器人。<br>
+然後把提示詞貼上聊天視窗，可使用 Nano Banana 模型。🚀
   </p>
 </div>
 
