@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>設計提示詞 ✨</title>
+<title>Build Your Prompt ✨</title>
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -314,13 +314,13 @@
 <body>
 
 <div class="card-container">
-  <h1>🧩  拆解數學題提示詞</h1>
+  <h1>🧩 Decomposing Problems Prompt</h1>
 
   <!-- Step 1: Build the equation and copy -->
   <div class="copy-card">
-    <span class="label">第一步 - 輸入算式</span>
+    <span class="label">Step 1 — Build your equation</span>
     <div class="prompt-intro">
-      你是數學老師，我是香港的小五學生。把以下問題拆解成幾個小問題，引導我找出答案，不要直接說答案。
+      You are a mathematics teacher. I am a Hong Kong P5 student. Do not directly tell me the answer. Instead, divide the problem below into smaller sub-problems that will help me find the answer.
     </div>
 
     <div class="equation-builder" id="equationBuilder">
@@ -328,28 +328,28 @@
     </div>
 
     <button class="add-btn" onclick="addElement()">
-      <span class="add-icon">+</span> 輸入其他數字
+      <span class="add-icon">+</span> Add another number
     </button>
 
-    <span class="preview-label">最終生成的提示詞</span>
+    <span class="preview-label">Your prompt</span>
     <div class="preview-text" id="previewText"></div>
 
     <button class="copy-btn" id="promptBtn" onclick="copyText()">
-      📋 &nbsp;複製提示詞
+      📋 &nbsp;Copy Prompt
     </button>
   </div>
 
   <!-- Step 2: Open the Chatbot -->
   <div class="copy-card">
-    <span class="label">第二步 - 開啟聊天機器人</span>
+    <span class="label">Step 2 — Open the chatbot</span>
     <a class="link-btn" href="https://chat.uat.jcgoai.hk" target="_blank">
-      🚀 &nbsp;開啟聊天機器人
+      🚀 &nbsp;Open Chatbot
     </a>
   </div>
 
   <p class="instructions">
-   開啟聊天機器人，<br>
-然後把提示詞貼上聊天視窗，可使用任何人工智能模型。🚀
+   Open the chatbot.<br>
+    Then paste the prompt into the chat using any AI model. 🚀
   </p>
 </div>
 
@@ -371,7 +371,7 @@ function createElementHTML(index) {
 
   html += '<div class="element-group">' +
     '<div style="display:flex;flex-direction:column;align-items:center;gap:2px;">' +
-    '<span class="element-label">整數</span>' +
+    '<span class="element-label">whole</span>' +
     '<input type="number" class="whole-input" placeholder="0" min="0" max="99" oninput="updatePreview()">' +
     '</div>' +
     '<div class="fraction-group">' +
@@ -399,8 +399,33 @@ function renderElements() {
 }
 
 function addElement() {
+  // Gather current values before re-rendering
+  const rows = document.querySelectorAll('.equation-row');
+  const values = [];
+  rows.forEach((row, i) => {
+    values.push({
+      op: i > 0 ? row.querySelector('.operator-select').value : null,
+      whole: row.querySelector('.whole-input').value,
+      num: row.querySelector('.frac-num').value,
+      den: row.querySelector('.frac-den').value,
+    });
+  });
+
+  // Add a new blank element
   elementCount++;
   renderElements();
+
+  // Restore the previously entered values
+  const newRows = document.querySelectorAll('.equation-row');
+  values.forEach((val, i) => {
+    if (i > 0 && val.op) {
+      newRows[i].querySelector('.operator-select').value = val.op;
+    }
+    newRows[i].querySelector('.whole-input').value = val.whole;
+    newRows[i].querySelector('.frac-num').value = val.num;
+    newRows[i].querySelector('.frac-den').value = val.den;
+  });
+  updatePreview();
 }
 
 function removeElement(index) {
@@ -470,7 +495,7 @@ function buildEquation() {
 
 function buildPrompt() {
   const eq = buildEquation();
-  return '你是數學老師，我是香港的小五學生。把 ' + eq + ' 拆解成幾個小問題，引導我找出答案，不要直接說答案。';
+  return 'You are a mathematics teacher. I am a Hong Kong P5 student. Do not directly tell me the answer. Instead, divide the problem ' + eq + ' into smaller sub-problems that will help me find the answer.';
 }
 
 function updatePreview() {
@@ -502,7 +527,7 @@ function copyText() {
 
 function showCopied(btn) {
   const original = btn.innerHTML;
-  btn.innerHTML = '✅ &nbsp;複製成功！';
+  btn.innerHTML = '✅ &nbsp;Copied!';
   btn.classList.add('copied');
   setTimeout(() => {
     btn.innerHTML = original;
