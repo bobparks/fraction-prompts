@@ -188,7 +188,7 @@
       </select>
     遊戲幫助學生學習
       <select class="inline-select" data-slot="concept" onchange="updatePreview()">
-        <option value="比較分數與基準值（例如 ½ 或 1">如何比較分數
+        <option value="比較分數與基準值（例如 ½ 或 1)">如何比較分數
 </option>
         <option value="不同類型的分數（例如真分數、假分數和帶分數">不同分數類型
 </option>
@@ -234,7 +234,7 @@ function getSelections() {
 
 function buildPrompt() {
   const s = getSelections();
-  return `在 ${s.device}, 編寫程式碼製作 ${s.game} 遊戲幫助學生學習 ${s.concept}。請讓遊戲元素看起來像 ${s.theme}。`;
+  return `在 ${s.device}，編寫程式碼製作 ${s.game} 遊戲幫助學生學習 ${s.concept}。請讓遊戲元素看起來像 ${s.theme}。`;
 }
 
 function updatePreview() {
