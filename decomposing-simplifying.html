@@ -399,8 +399,33 @@ function renderElements() {
 }
 
 function addElement() {
+  // Gather current values before re-rendering
+  const rows = document.querySelectorAll('.equation-row');
+  const values = [];
+  rows.forEach((row, i) => {
+    values.push({
+      op: i > 0 ? row.querySelector('.operator-select').value : null,
+      whole: row.querySelector('.whole-input').value,
+      num: row.querySelector('.frac-num').value,
+      den: row.querySelector('.frac-den').value,
+    });
+  });
+
+  // Add a new blank element
   elementCount++;
   renderElements();
+
+  // Restore the previously entered values
+  const newRows = document.querySelectorAll('.equation-row');
+  values.forEach((val, i) => {
+    if (i > 0 && val.op) {
+      newRows[i].querySelector('.operator-select').value = val.op;
+    }
+    newRows[i].querySelector('.whole-input').value = val.whole;
+    newRows[i].querySelector('.frac-num').value = val.num;
+    newRows[i].querySelector('.frac-den').value = val.den;
+  });
+  updatePreview();
 }
 
 function removeElement(index) {
