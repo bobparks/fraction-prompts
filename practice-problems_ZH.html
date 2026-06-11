@@ -174,9 +174,9 @@
 
   <!-- Step 1: Build and copy the prompt -->
   <div class="copy-card">
-    <span class="label">步驟 1 — 選擇並複製</span>
+    <span class="label">第一步 - 選擇並複製</span>
     <div class="prompt-builder">
-      Create
+      請幫我生成
       <select class="inline-select" data-slot="count" onchange="updatePreview()">
         <option value="1">1</option>
         <option value="2">2</option>
@@ -189,14 +189,14 @@
         <option value="9">9</option>
         <option value="10">10</option>
       </select>
-      practice question(s) for
+      條涉及兩個帶分數
       <select class="inline-select" data-slot="operation" onchange="updatePreview()">
-        <option value="adding">adding</option>
-        <option value="subtracting">subtracting</option>
-        <option value="multiplying">multiplying</option>
-        <option value="dividing">dividing</option>
+        <option value="adding">加法</option>
+        <option value="subtracting">減法</option>
+        <option value="multiplying">乘法</option>
+        <option value="dividing">除法</option>
       </select>
-      two mixed numbers.
+       的練習題。
     </div>
 
     <span class="preview-label">最終生成的提示詞</span>
@@ -225,8 +225,7 @@
 function buildPrompt() {
   const count = document.querySelector('[data-slot="count"]').value;
   const operation = document.querySelector('[data-slot="operation"]').value;
-  const noun = count === '1' ? 'question' : 'questions';
-  return `Create ${count} practice ${noun} for ${operation} two mixed numbers.`;
+  return `請幫我生成 ${count} 條涉及兩個帶分數 ${operation} 的練習題。`;
 }
 
 function updatePreview() {
