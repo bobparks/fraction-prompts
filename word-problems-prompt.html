@@ -298,8 +298,8 @@
 
   <!-- STEP 1: the problem -->
   <div class="copy-card">
-    <div class="step-head"><span class="step-num">1</span><span class="label">Read the word problem</span></div>
-    <p class="helper">Type or use voice input to enter your word problem. Read it twice before you write anything below.</p>
+    <div class="step-head"><span class="step-num">1</span><span class="label">Read the word problem and enter it here</span></div>
+    <p class="helper">Read the problem twice before you write anything below.</p>
     <button class="example-chip" onclick="loadExample()">Try an example</button>
     <div class="mic-hint"><span class="mic-icon">🎤</span>Type or use voice input to enter your word problem here.</div>
     <textarea class="problem-input" id="problem" placeholder="Type or speak the word problem here…" oninput="update()"></textarea>
@@ -307,8 +307,8 @@
 
   <!-- STEP 2: structure it (the committed work, before any AI) -->
   <div class="copy-card">
-    <div class="step-head"><span class="step-num">2</span><span class="label">Structure it — in your own words</span></div>
-    <p class="helper">This is the hard part, and the part worth doing yourself. Finish it before you touch the AI.</p>
+    <div class="step-head"><span class="step-num">2</span><span class="label">Structure it in your own words</span></div>
+    <p class="helper">This is the hard part, and the part worth doing yourself. Finish it before using the AI.</p>
 
     <span class="field-label">What is the question asking you to find?</span>
     <input type="text" id="goal" placeholder="e.g. how much grain the goose actually ate" oninput="update()">
@@ -326,7 +326,7 @@
     </div>
     <input type="text" id="why" placeholder="Why that operation? What in the wording tells you?" oninput="update()">
 
-    <span class="field-label">Write your plan, in steps</span>
+    <span class="field-label">Write or voice input to enter your plan, in steps</span>
     <textarea class="plan-input" id="plan" placeholder="First I will… then I will…" oninput="update()"></textarea>
   </div>
 
@@ -347,11 +347,11 @@
 
     <div class="lock-note hidden" id="lockNote">
       <span>🔒</span>
-      <span>Finish structuring the problem first (step 2). The AI checks your thinking — it won't do the structuring for you.</span>
+      <span>Finish structuring the problem first (step 2). The AI checks your thinking.</span>
     </div>
 
     <div class="ai-body" id="aiBody">
-      <p class="helper">The AI will react to <strong>your</strong> structuring. It won't re-do the problem and it won't give the answer.</p>
+      <p class="helper">The AI will react to <strong>your</strong> structuring. It won't re-do the problem, and it won't give the answer.</p>
       <span class="preview-label">Your prompt</span>
       <div class="preview-text" id="preview"></div>
       <button class="copy-btn" id="copyBtn" onclick="copyText()">📋&nbsp; Copy Prompt</button>
@@ -362,9 +362,9 @@
     <div class="checklist hidden" id="selfCheck">
       <p class="helper">No AI this time. Read each line and tick it only if it's true.</p>
       <div class="check-item"><span class="check-box"></span><span>I wrote, in my own words, what the question is asking me to find.</span></div>
-      <div class="check-item"><span class="check-box"></span><span>I know what each number means in the story — not just the digits.</span></div>
+      <div class="check-item"><span class="check-box"></span><span>I know what each number means in the story.</span></div>
       <div class="check-item"><span class="check-box"></span><span>I chose an operation and gave a reason from the wording.</span></div>
-      <div class="check-item"><span class="check-box"></span><span>Could someone read this a different way and choose a different operation? If so, I can say why mine is right.</span></div>
+      <div class="check-item"><span class="check-box"></span><span>Someone could read this a different way and choose a different operation, but I can say why mine is right.</span></div>
       <div class="check-item"><span class="check-box"></span><span>I wrote my plan before doing any arithmetic.</span></div>
     </div>
   </div>
@@ -379,12 +379,12 @@
   let selectedOp = '';
   let level = 1;
 
-  const gooseProblem = "The goose gets 2 1/3 ounces of grain in its bowl. The duck comes by and nibbles 1/5 of the grain. How much did the goose get to eat?";
+  const gooseProblem = "The goose gets 2 1/3 scoops of grain in its bowl. The duck comes by and nibbles 1/5 scoops of grain. How much did the goose get to eat?";
 
   const levelDescriptions = {
-    1: "Coach — the AI asks you one question at a time about your plan, so you can find any mistakes yourself.",
-    2: "Second opinion — the AI only reacts if your operation looks wrong. If your thinking is sound, it tells you to go and solve it.",
-    3: "On my own — no AI. You check your own structuring against a short list."
+    1: "Coach: The AI asks you one question at a time about your plan, so you can find any mistakes yourself.",
+    2: "Second opinion: The AI only reacts if your operation looks wrong. If your thinking is sound, it tells you to go and solve it.",
+    3: "On my own: No AI. You check your own structuring against a short list."
   };
 
   function loadExample() {
@@ -425,13 +425,13 @@
 
     const coach =
       "Do NOT give me the answer, and do NOT re-structure the problem for me. Check MY thinking, one question at a time. " +
-      "If I chose the wrong operation or misread a number, do not tell me the correct version — ask me a question that helps me notice it myself. " +
+      "If I chose the wrong operation or misread a number, do not tell me the correct version. Ask me a question that helps me notice it myself. " +
       "Start now with one question about my plan.";
 
     const secondOpinion =
       "Do NOT give me the answer and do NOT re-structure the problem. Look only at the operation I chose and what I said the numbers mean. " +
-      "If my structuring looks sound, reply exactly: \"Your structure looks sound — go and solve it yourself.\" " +
-      "If something looks wrong, do not tell me what is right — ask me ONE question that helps me spot it. Nothing more.";
+      "If my structuring looks sound, reply exactly: \"Your structure looks sound. Go and solve it yourself.\" " +
+      "If something looks wrong, do not tell me what is right. Ask me ONE question that helps me spot it. Nothing more.";
 
     return block + (level === 2 ? secondOpinion : coach);
   }
