@@ -190,18 +190,18 @@
 <body>
 
 <div class="card-container">
-  <h1>🧩 Decompose a Word Problem</h1>
+  <h1>🧩 Break Down a Word Problem</h1>
 
   <!-- Step 1: Enter word problem and copy -->
   <div class="copy-card">
     <span class="label">Step 1 — Enter your word problem</span>
     <div class="prompt-intro">
-      You are a mathematics teacher. I am a Hong Kong P5 student. Do not directly tell me the answer. Instead, divide this word problem into smaller sub-problems that will help me find the answer.
+      You are a mathematics teacher. I am a Hong Kong P5 student. Do not directly tell me the answer. Instead, suggest ways to break this word problem into smaller sub-problems that will help me find the answer.
     </div>
 
     <div class="mic-hint">
       <span class="mic-icon">🎤</span>
-      Tip: Tap the microphone on your keyboard to speak your word problem!
+      Type or use voice input to enter your word problem here.
     </div>
 
     <textarea
@@ -229,14 +229,14 @@
 
   <p class="instructions">
     Open the chatbot.<br>
-    Then paste the prompt into the chat using either Gemini or ChatGPT. 🚀
+    Then paste the prompt into the chat using any AI model. 🚀
   </p>
 </div>
 
 <script>
 function buildPrompt() {
   const problem = document.getElementById('wordProblem').value.trim();
-  const base = 'You are a mathematics teacher. I am a Hong Kong P5 student. Do not directly tell me the answer. Instead, divide this word problem into smaller sub-problems that will help me find the answer:';
+  const base = 'You are a mathematics teacher. I am a Hong Kong P5 student. Do not directly tell me the answer. Instead, suggest ways to break this word problem into smaller sub-problems that will help me find the answer:';
   if (problem) {
     return base + ' ' + problem;
   }
