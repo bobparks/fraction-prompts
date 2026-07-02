@@ -295,7 +295,7 @@
 <body>
 
 <div class="card-container">
-  <h1>🧩 Structure and Solve a Word Problem</h1>
+  <h1>🧩 Breaking Down Word Problems</h1>
 
   <!-- STEP 1: the problem -->
   <div class="copy-card">
@@ -308,8 +308,8 @@
 
   <!-- STEP 2: structure it (the committed work, before any AI) -->
   <div class="copy-card">
-    <div class="step-head"><span class="label">Step 2: Structure it in your own words</span></div>
-    <p class="helper">This is the hard part, and the part worth doing yourself. Finish it before using the AI.</p>
+    <div class="step-head"><span class="label">Step 2: Break it down in your own words</span></div>
+    <p class="helper">This is the hard part, and the part worth doing yourself.</p>
 
     <span class="field-label">What is the question asking you to find?</span>
     <input type="text" id="goal" placeholder="e.g. how much grain the goose actually ate" oninput="update()">
@@ -348,11 +348,11 @@
 
     <div class="lock-note hidden" id="lockNote">
       <span>🔒</span>
-      <span>Finish structuring the problem first (step 2). The AI checks your thinking.</span>
+      <span>Break down the problem first (step 2). The AI checks your thinking.</span>
     </div>
 
     <div class="ai-body" id="aiBody">
-      <p class="helper">The AI will react to <strong>your</strong> structuring. It won't re-do the problem, and it won't give the answer.</p>
+      <p class="helper">The AI will react to <strong>your</strong> plan. It won't re-do the problem, and it won't give the answer.</p>
       <span class="preview-label">Your prompt</span>
       <div class="preview-text" id="preview"></div>
       <button class="copy-btn" id="copyBtn" onclick="copyText()">📋&nbsp; Copy Prompt</button>
@@ -362,9 +362,9 @@
     <!-- Level 3: no AI, self-check instead -->
     <div class="checklist hidden" id="selfCheck">
       <p class="helper">No AI this time. Read each line and tick it only if it's true.</p>
-      <div class="check-item"><span class="check-box"></span><span>I wrote, in my own words, what the question is asking me to find.</span></div>
+      <div class="check-item"><span class="check-box"></span><span>I wrote and broke down the word problem in my own words.</span></div>
       <div class="check-item"><span class="check-box"></span><span>I know what each number means in the story.</span></div>
-      <div class="check-item"><span class="check-box"></span><span>I chose an operation and gave a reason from the wording.</span></div>
+      <div class="check-item"><span class="check-box"></span><span>I chose an operation (addition, subtraction, multiplication, division) and gave a reason.</span></div>
       <div class="check-item"><span class="check-box"></span><span>Someone could read this a different way and choose a different operation, but I can say why mine is right.</span></div>
       <div class="check-item"><span class="check-box"></span><span>I wrote my plan before doing any arithmetic.</span></div>
     </div>
